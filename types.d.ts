@@ -1,27 +1,26 @@
-//import * as SYMBOLS from "./src/symbols";
 
 type property<T> = {
     get?(this: T): any;
     set?(this: T, value: any): void;
-    value: infer V extends Function? ((this: T,...args: any[])=> any): any; 
+    value: infer V extends Function? ((this: T,...args: any[])=> any) : any; 
 }
 
 
 namespace Cargo{
     type Base = import("./src/Base").Base;
 
-    type Object = import("./entities/Object").CargoObject;
-    type Array = import("./entities/Array").CargoArray;
+    type Object = import("./src/entities").CargoObject;
+    type Array = import("./src/entities").CargoArray;
 
     namespace external {
         type Object = {
-            [key: string]: any;
+            [key: string]: Cargo.inner.CargoJSONType;
             [symbols.metadata]: Cargo.Object;
             toJSON: () => Cargo.inner.JSONType;
         }
         type Array = {
-            [key: string]: any
-            [symbols.metadata]: Base;
+            [key: string]: Cargo.inner.CargoJSONType
+            [symbols.metadata]: Cargo.Array;
             length: number;
             toJSON: () => Cargo.inner.JSONType;
         }
@@ -33,6 +32,6 @@ namespace Cargo{
     }
 
     namespace symbols {
-        const metadata: typeof import("./src/symbols").metadata;
+        const metadata: typeof import("./src/symbols").metadata = Symbol();
     }
 }

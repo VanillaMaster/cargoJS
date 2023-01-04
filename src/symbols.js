@@ -1,1 +1,1 @@
-export const metadata = Symbol.for("Cargo:metadata");
+export const metadata = Symbol("Cargo:metadata");
