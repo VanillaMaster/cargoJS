@@ -9,8 +9,8 @@ type property<T> = {
 namespace Cargo{
     type Base = import("./src/Base").Base;
 
-    type Object = import("./src/entities").CargoObject;
-    type Array = import("./src/entities").CargoArray;
+    type Object = import("./src/Object").CargoObject;
+    type Array = import("./src/Array").CargoArray;
 
     namespace external {
         type Object = {
@@ -28,7 +28,7 @@ namespace Cargo{
 
     namespace inner {
         type JSONType = string | number | boolean | null | {[key: string]: JSONType} | JSONType[];
-        type CargoJSONType = string | number | boolean | null | Cargo.external.Object | Cargo.external.Array;
+        type CargoJSONType = string | number | boolean | null | Cargo.external.Object | Cargo.external.Array; 
     }
 
     namespace symbols {
